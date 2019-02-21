@@ -11,7 +11,7 @@ class Pomodoro
   def countdown(secs)
     time_left = Time.at(secs)
     secs.times {
-      print "#{time_left.min} m #{time_left.sec} s left \r"
+      print "#{time_left.strftime("%M:%S")} left \r"
       sleep 1
       time_left -= 1
       @total_time += 1
