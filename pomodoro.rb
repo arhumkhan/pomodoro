@@ -44,6 +44,7 @@ class Pomodoro
   end
 end
 
+puts "Input work time: "
 pomo = Pomodoro.new(1,0,0)
 
 input = "y"
