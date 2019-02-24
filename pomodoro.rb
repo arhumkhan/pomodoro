@@ -2,10 +2,10 @@ class Pomodoro
   attr_reader :work
   attr_reader :total_time
   def initialize(work=25, short_break=5, long_break=15)
-  	@work = work * 60
-  	@short_break = short_break * 60
-  	@long_break = long_break * 60
-  	@total_time = 0 #in seconds
+    @work = work * 60
+    @short_break = short_break * 60
+    @long_break = long_break * 60
+    @total_time = 0 #in seconds
   end
 
   def countdown(secs)
@@ -20,32 +20,46 @@ class Pomodoro
   end
 
   def run_work_period
-  	puts "Begin work for #{@work / 60} minutes."
-  	countdown(@work)
+    puts "Begin work for #{@work / 60} minutes."
+    countdown(@work)
   end
 
   def run_short_break
-  	puts "Break for #{@short_break / 60} minutes."
-  	countdown(@short_break)
+    puts "Break for #{@short_break / 60} minutes."
+    countdown(@short_break)
   end
 
   def run_long_break
-  	puts "Enjoy a long break for #{@long_break / 60} minutes."
-  	countdown(@long_break)
+    puts "Enjoy a long break for #{@long_break / 60} minutes."
+    countdown(@long_break)
   end
 
   def run_set
-  	3.times {
+    3.times {
       run_work_period
       run_short_break
     }
     run_work_period
-  	run_long_break
+    run_long_break
   end
 end
 
-puts "Input work time: "
-pomo = Pomodoro.new(1,0,0)
+puts "Use default 25-5-15 pomodoro scheme or create a custom scheme?"
+puts "-- default"
+puts "-- create"
+
+choice = gets.chomp.downcase
+case choice
+when 'default'
+  pomo = Pomodoro.new
+when 'create'
+  puts "Enter work period duration, short break duration, and the long break duration:"
+  puts "(In minutes and separated by spaces please!)"
+  input = gets.chomp.downcase
+  durations = input.split(' ')
+  #gotta put a bunch of checks here eventually
+  pomo = Pomodoro.new(durations[0].to_i, durations[1].to_i, durations[2].to_i)
+end
 
 input = "y"
 until input == "n"
