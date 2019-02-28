@@ -1,11 +1,11 @@
 class Pomodoro
   attr_reader :work
-  attr_reader :total_time
+  attr_reader :total_work
   def initialize(work=25, short_break=5, long_break=15)
     @work = work * 60
     @short_break = short_break * 60
     @long_break = long_break * 60
-    @total_time = 0 #in seconds
+    @total_work = 0 #in seconds
   end
 
   def countdown(secs, working = false)
@@ -14,7 +14,7 @@ class Pomodoro
       print "#{time_left.strftime("%M:%S")} left \r"
       sleep 1
       time_left -= 1
-      @total_time += 1 if working
+      @total_work += 1 if working
     }
     print "\n"
   end
@@ -67,4 +67,4 @@ until input == "n"
   puts "Run another set of #{pomo.work / 60} minute pomodoros? (y/n)"
   input = gets.chomp.downcase
 end
-puts "Total time: #{pomo.total_time / 60} minutes."
+puts "Total time: #{pomo.total_work / 60} minutes."
