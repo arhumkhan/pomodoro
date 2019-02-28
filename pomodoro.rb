@@ -8,20 +8,20 @@ class Pomodoro
     @total_time = 0 #in seconds
   end
 
-  def countdown(secs)
+  def countdown(secs, working = false)
     time_left = Time.at(secs)
     secs.times {
       print "#{time_left.strftime("%M:%S")} left \r"
       sleep 1
       time_left -= 1
-      @total_time += 1
+      @total_time += 1 if working
     }
     print "\n"
   end
 
   def run_work_period
     puts "Begin work for #{@work / 60} minutes."
-    countdown(@work)
+    countdown(@work, true)
   end
 
   def run_short_break
@@ -67,5 +67,4 @@ until input == "n"
   puts "Run another set of #{pomo.work / 60} minute pomodoros? (y/n)"
   input = gets.chomp.downcase
 end
-
 puts "Total time: #{pomo.total_time / 60} minutes."
