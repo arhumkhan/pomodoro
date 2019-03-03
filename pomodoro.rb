@@ -68,3 +68,4 @@ until input == "n"
   input = gets.chomp.downcase
 end
 puts "Total time: #{pomo.total_work / 60} minutes."
+
